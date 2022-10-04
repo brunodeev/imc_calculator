@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: const Home(),
     theme: ThemeData(fontFamily: 'Muli'),
   ));
 }
@@ -24,7 +24,9 @@ class _HomeState extends State<Home> {
   void resetFields() {
     weightController.text = '';
     heightController.text = '';
-    _infoText = 'Informe seus dados';
+    setState(() {
+      _infoText = 'Informe seus dados';
+    });
   }
 
   void calculate() {
@@ -68,13 +70,15 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const SizedBox(height: 30),
-            const Icon(
-              Icons.person_outline,
-              size: 120.0,
-              color: Color(0xFF6497b1),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50.0),
+              child: SizedBox(
+                height: 140,
+                width: 300,
+                child:
+                    Image.asset('assets/images/imc.png', fit: BoxFit.contain),
+              ),
             ),
-            const SizedBox(height: 30),
             TextField(
               controller: weightController,
               keyboardType: TextInputType.number,
